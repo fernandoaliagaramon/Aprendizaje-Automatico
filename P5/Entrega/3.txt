@@ -1,0 +1,98 @@
+Matriz de confusion de 1
+matriz_confusion =
+
+    98     2
+     2   898
+
+Precision (1) = 0.980000
+Recall (1) = 0.980000
+------------------------
+
+Matriz de confusion de 2
+matriz_confusion =
+
+    99     7
+     1   893
+
+Precision (2) = 0.933962
+Recall (2) = 0.990000
+------------------------
+
+Matriz de confusion de 3
+matriz_confusion =
+
+    93     5
+     7   895
+
+Precision (3) = 0.948980
+Recall (3) = 0.930000
+------------------------
+
+Matriz de confusion de 4
+matriz_confusion =
+
+    97     1
+     3   899
+
+Precision (4) = 0.989796
+Recall (4) = 0.970000
+------------------------
+
+Matriz de confusion de 5
+matriz_confusion =
+
+    93     2
+     7   898
+
+Precision (5) = 0.978947
+Recall (5) = 0.930000
+------------------------
+
+Matriz de confusion de 6
+matriz_confusion =
+
+    99     1
+     1   899
+
+Precision (6) = 0.990000
+Recall (6) = 0.990000
+------------------------
+
+Matriz de confusion de 7
+matriz_confusion =
+
+    97     1
+     3   899
+
+Precision (7) = 0.989796
+Recall (7) = 0.970000
+------------------------
+
+Matriz de confusion de 8
+matriz_confusion =
+
+    94    10
+     6   890
+
+Precision (8) = 0.903846
+Recall (8) = 0.940000
+------------------------
+
+Matriz de confusion de 9
+matriz_confusion =
+
+    95     4
+     5   896
+
+Precision (9) = 0.959596
+Recall (9) = 0.950000
+------------------------
+
+Matriz de confusion de 10
+matriz_confusion =
+
+   100     2
+     0   898
+
+Precision (10) = 0.980392
+Recall (10) = 1.000000

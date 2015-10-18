@@ -1,0 +1,49 @@
+%% Practica 6.1
+% Generar datos sinteticos 2D a partir de una distribucion Gausian
+% Aplicar PCA
+
+clear all
+close all
+
+% Generar datos con myMvnRnd
+% aqui se generan con uniformes
+%X=[rand(100,1)'; rand(100,1)'*10]'*[cos(pi/4) -sin(pi/4);sin(pi/4) cos(pi/4)] ;
+mu = [5 3]';
+Sigma = [1 0.5; -0.5 1];
+nsamples = 1000;
+X=myMvnRnd(mu, Sigma, nsamples);
+X=X';
+
+% Centrar los datos
+mu=mean(X);
+cX = X-repmat(mu,size(X,1),1);
+
+[U,S,v]=svd(cX);
+% Aplicar svd 
+% esta base es inventada pero os recomiendo ejecutar el script 
+% para ver el sist.de referencia y las proyecciones
+%v = [0 -1; 1 0]';
+
+% proyeccion
+z=cX*v(:,1);
+
+% reconstruccion
+rX=z*v(:,1)' + repmat(mu,size(cX,1),1);
+
+r
+
+%% Dibujar el resultado
+figure(100)
+clf, hold on
+axis equal
+
+% mostrar los puntos 
+plot(X(:,1),X(:,2),'.')
+
+% mostrar la reconstruccion
+plot(rX(:,1),rX(:,2),'k.')
+
+% mostrar los vectores de las componentes principales en v
+plot([0 v(1,1)],[0 v(1,2)],'r')
+plot([0 v(2,1)],[0 v(2,2)],'g')
+

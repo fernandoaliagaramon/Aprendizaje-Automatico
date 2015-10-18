@@ -1,0 +1,22 @@
+% Toy story
+my_predictions(1) = 5;
+% Pulp fiction
+my_predictions(56) = 5;
+% Star wars
+my_predictions(50)= 5;
+% Indiana Jones
+my_predictions(210) = 4;
+% Jungla de cristal
+my_predictions(144)= 5;
+my_predictions(226)= 5;
+my_predictions(550)= 5;
+% Jurassic Park
+my_predictions(82)= 5;
+
+% Titanic
+my_predictions(313) = 1;
+% Mary Poppins
+my_predictions(419) = 1;
+% Sabrina
+my_predictions(486) = 1;
+my_predictions(355)= 5;

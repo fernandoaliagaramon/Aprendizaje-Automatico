@@ -1,0 +1,26 @@
+function [py,vary]=GPregression(x,y,px,covfunc, hyp, sigma2);
+%function [py,vary]=GPregression(K,y, sigma2)
+% GP prediction for regression
+%
+% INPUT:
+%   K is the full kernel matrix for datapoints x (train and test)
+%       dimension of K=(Ntrain + Ntest) x (Ntrain + Ntest) 
+%   y: vector of output values for train datapoints (Ntrain x1)
+%   sigma: noise level
+
+ntrain=size(x,1);
+ntest=size(px,1);
+
+
+% FILL THESE PART
+% Use the covfunc handle to evaluate the kernel for x and px and compute
+% K, K** and K* (covariance matrix for training points, covariance matrix 
+% of test points) and correlations of training and test points 
+% To use the cov function: feval(func_handle{:},hyp,x)
+%
+K=feval(covfunc{:},hyp,[x; px]);
+
+
+% Predict mean py and covariance vary for test points 
+
+mean = 

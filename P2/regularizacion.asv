@@ -1,0 +1,50 @@
+function [ mejor_lambda, mejor_error ] = regularizacion( n, k , Xdatos, ydatos)
+
+mejor_lambda = 10^(-5);
+mejor_error = 100000;
+
+errores_T = [];
+errores_V = [];
+
+for lambda = logspace (-20,2,100)
+
+    error_T = 0;
+    error_V = 0;
+    [Xexp] = expandir (Xdatos, [10 5 5]);
+    [ Xn, mu, sig ] = normalizar( Xexp );
+    for i = 1:k
+        [ Xcv, ycv, Xtr, ytr ] = particion( i, k, Xn, ydatos );
+        [nrows,ncols] = size(Xtr);
+        h = Xtr'*Xtr + lambda*diag([0 ones(1,ncols-1)]);
+        theta = h \ (Xtr'*ytr);
+        error_T = error_T + RMSE (theta, Xtr, ytr);
+        error_V = error_V + RMSE (theta, Xcv, ycv);
+    end
+    error_T = error_T / k;
+    error_V = error_V / k;
+    errores_T = [errores_T error_T];
+    errores_V = [errores_V error_V];
+    if (error_V < mejor_error )
+        'Actualizo mejor error y tamaño.'
+        'Nuevo mejor tamaño: '
+        mejor_lambda = lambda
+        'Nuevo mejor error: '
+        mejor_error = error_V
+    end
+end
+
+
+
+figure;
+grid on; hold on;
+title(sprintf('Rojo -> errores entrenamiento. Azul -> errores validacion'));
+plot(errores_T,'r')
+plot(errores_V)
+mejor_error
+mejor_lambda
+
+% [Xexp] = expandir (Xdatos, [5 mejor_tam 1]);
+% [ Xn, mu, sig ] = normalizar( Xexp );
+% h = Xtr\ytr;
+% [ wdes ] = desnormalizar( h, mu, sig )
+

@@ -1,0 +1,17 @@
+function [J, grad] = gpCostFunc(x, y, sigma, sf,ell, func_handle)
+
+ell=exp(
+ntrain=size(y,1);
+
+hyp=log([ell sf]);
+
+K=feval(func_handle{:}, hyp, x);
+dK=feval(func_handle{:}, hyp, x,[],1);
+
+L=chol(K+sigma*eye(size(K)),'lower');
+alfa=L'\(L\y);
+J=-(-0.5*y'*alfa -sum(log(diag(L))))-log(ell);
+
+invK=inv(L)'*inv(L);
+%invK=inv(K+sigma*eye(size(K))
+grad=-0.25*trace((alfa*alfa'-invK)*dK ) ;

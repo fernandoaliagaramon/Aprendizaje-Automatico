@@ -1,0 +1,53 @@
+%%
+%% Practica 5 - Fernando Aliaga Ramon
+%%
+
+%
+% Ejercicio 2 - Entrenamiento y clasificacion con modelos Gaussianos
+% regularizados.
+%
+fprintf('\nEjercicio 2 - Entrenamiento y clasificacion con modelos Gaussianos regularizados.\n');
+fprintf('---------------------------------------------------------------------------------\n');
+
+clear ; close all;
+addpath(genpath('../minfunc'));
+
+% Carga los datos y los permuta aleatoriamente
+load('MNISTdata2.mat'); % Lee los datos: X, y, Xtest, ytest
+rand('state',0);
+p = randperm(length(y));
+
+X = X(p,:);
+y = y(p);
+
+mod = entrenarGaussianas(X,y,10,1,0.027);
+
+mu = mod{2}.mu;
+Sigma = mod{2}.Sigma;
+
+
+p = clasificacionBayesiana(mod,X);
+
+error_test = ((1 - (mean(double(p == y))))*100);
+
+fprintf('\nValidacion cruzada\n');
+
+mejor_lambda = validacionCruzada( 0, 0.02, 0.001, X, y, 10, 1);
+
+modelo = entrenarGaussianas(X, y, 10, 1, mejor_lambda);
+    
+    
+p = clasificacionBayesiana(modelo,Xtest);  
+
+error_test = ((1 - (mean(double(p == ytest))))*100);
+fprintf('Error con datos de test = %f\n',error_test);
+
+% Calculamos la matriz de confusion para cada clase
+for i=1:10
+    matrizConfusion(p,ytest,i);
+end
+
+% Inventa una solucion y muestra las confusiones
+verConfusiones(Xtest, ytest, p);
+
+matriz = [ytest p];

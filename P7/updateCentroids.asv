@@ -1,0 +1,30 @@
+function newc = updateCentroids(D,Z)
+% D((N,P), N datapoints, P dimensions
+% Z(P) assignment of each datapoint to a class
+%
+% newc(K,P) new centroids
+
+D = size(c, 1);
+newc = zeros(size(D,1), 1);
+
+for xi = 1:size(D,1)
+  x = D(xi, :);
+
+  % Find closest centroid for x.
+  best = Inf;
+  for mui = 1:K
+    mu = centroids(mui, :);
+    d = dot(x - mu, x - mu);
+    if d < best
+      best = d;
+      idx(xi) = mui;
+    end
+  end
+
+  %diff_vecs = repmat(x, K, 1) - centroids;
+  %diffs = diff_vecs * diff_vecs'; ...
+end
+
+end
+
+
